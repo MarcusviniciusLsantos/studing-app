@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
+      <>
+        <nav className="navbar navbar-light bg-light">
+          <a className="navbar-brand" href="#">
+            <img src="https://getbootstrap.com/docs/4.2/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
+            &nbsp;Studing
           </a>
-          <form>
-            <input type="" defaultValue={process.env.REACT_APP_apiKey} />
-            <input type="" defaultValue={process.env.REACT_APP_authDomain} />
-            <input type="" defaultValue={process.env.REACT_APP_databaseURL} />
-            <input type="" defaultValue={process.env.REACT_APP_storageBucket} />
-            <input type="" defaultValue={process.env.REACT_APP_messagingSenderId} />
-            <input type="" defaultValue={process.env.REACT_APP_projectID} />
+        </nav>
+        <br />
+        <div className="container">
+          <form className="form-inline">
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-          {console.log('env =>', process.env.REACT_APP_projectID)}
-        </header>
-
-      </div>
-    );
+          <br />
+          <div className="card text-white bg-primary mb-3" style={{ maxWidth: "18rem" }}>
+            <div className="card-header">Header</div>
+            <div className="card-body">
+              <h5 className="card-title">Primary card title</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    )
   }
 }
 
