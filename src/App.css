@@ -1,0 +1,7 @@
+.footerFixed {
+  background: #f8f9fa;
+  position: absolute;
+  width: 100%;
+  bottom: 0; 
+  /* width: 100%;*/
+}
