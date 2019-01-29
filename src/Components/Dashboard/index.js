@@ -5,25 +5,24 @@ import Search from './Search';
 export default class Dashboard extends Component {
 
   renderCard = () => {
-    var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] || []
+    var array = [{id:0,color:'primary'}, {id:0,color:'secondary'}, {id:0,color:'success'}, {id:0,color:'danger'}, {id:0,color:'warning'}, {id:0,color:'info'}, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] || []
 
     return array.map(item =>
-      <div className="card text-white bg-primary mb-2" style={{ maxWidth: '20rem'}}><Card /></div>
+      <Card cardColor={item.color || 'primary'}/>
     )
   }
 
   render() {
     return (
       <div className="container">
-        <div className="row justify-content-around">
+        <div className="row justify-content-start">
           <Search />
         </div>
 
         <br />
-        <div className="row justify-content-around">
+        <div className="row justify-content-start">
           {this.renderCard()}
         </div>
-
       </div>
     )
   }
