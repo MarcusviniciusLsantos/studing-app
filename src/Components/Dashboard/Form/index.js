@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.css'
 
 export default class Form extends React.Component {
 
@@ -37,10 +38,10 @@ export default class Form extends React.Component {
       dynamicInputTopic: this.state.dynamicInputTopic.filter((s, sid) => id !== sid)
     });
   };
-  
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.props.showButtonForm}>
         <div className="form-row">
           <div className="col-md-6 mb-3">
             <label htmlFor="validationDefault01">Tema</label>
@@ -55,7 +56,27 @@ export default class Form extends React.Component {
             <textarea className="form-control" id="FormControlResumo" rows="3" placeholder="Sobre o assunto"></textarea>
           </div>
         </div>
+        <div className="form-row">
+        <label htmlFor="FormControlResumo">&nbsp; Selecione a cor do seu cartão: &nbsp;</label>
+        <button type="button" class="btn btn-primary Test" ></button>
+        &nbsp;
+        <button type="button" class="btn btn-secondary Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-success Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-danger Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-warning Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-info Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-light Test"></button>
+        &nbsp;
+        <button type="button" class="btn btn-dark Test"></button>
+        {/* <div className="btn btn-warning Test"></div> */}
 
+        </div>
+        <br/>
         {this.state.dynamicInputTopic.map((DynamicInputTopic, id) => (
           <div className="form-row" key={id}>
             <div className="col-md-10 mb-3">
@@ -86,7 +107,7 @@ export default class Form extends React.Component {
             </div>
           </div>
         ))}
-        <button className="btn btn-primary" type="submit" onClick={this.props.showButtonForm}>Submit form</button>
+        <input className="btn btn-primary" type="submit" value="Submit" />
       </form>
     )
   }
