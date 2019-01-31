@@ -5,7 +5,11 @@ export default class Form extends React.Component {
 
   state = {
     name: "",
-    dynamicInputTopic: [{ name: "" }]
+    dynamicInputTopic: [{ name: "" }],
+    colorForm: "light",
+    colorText: "black",
+    colorSecondary: "primary",
+    colorTertiary: "danger"
   };
 
 
@@ -41,74 +45,107 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.props.showButtonForm}>
-        <div className="form-row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="validationDefault01">Tema</label>
-            <input type="text" className="form-control" id="validationDefault01" placeholder="Tema" required />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="validationDefault02">Assunto</label>
-            <input type="text" className="form-control" id="validationDefault02" placeholder="Assunto" required />
-          </div>
-          <div className="col-md-12 mb-3">
-            <label htmlFor="FormControlResumo">Resumo</label>
-            <textarea className="form-control" id="FormControlResumo" rows="3" placeholder="Sobre o assunto"></textarea>
-          </div>
-        </div>
-        <div className="form-row">
-        <label htmlFor="FormControlResumo">&nbsp; Selecione a cor do seu cartão: &nbsp;</label>
-        <button type="button" class="btn btn-primary Test" ></button>
-        &nbsp;
-        <button type="button" class="btn btn-secondary Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-success Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-danger Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-warning Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-info Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-light Test"></button>
-        &nbsp;
-        <button type="button" class="btn btn-dark Test"></button>
-        {/* <div className="btn btn-warning Test"></div> */}
-
-        </div>
-        <br/>
-        {this.state.dynamicInputTopic.map((DynamicInputTopic, id) => (
-          <div className="form-row" key={id}>
-            <div className="col-md-10 mb-3">
-              <input
-                className="form-control"
-                type="text"
-                placeholder={`Topico ${id + 1}`}
-                value={DynamicInputTopic.name}
-                onChange={(event) => this.handleDynamicInputTopicNameChange(id, event)}
-              />
+      <div className={`card text-${this.state.colorText} bg-${this.state.colorForm} mb-4 mx-3`} style={{ backgroundColor: 'blue', paddingRight: '1rem', paddingLeft: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
+        <form onSubmit={this.props.showButtonForm} >
+          <div className="form-row">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="validationDefault01">Tema</label>
+              <input type="text" className="form-control" id="validationDefault01" placeholder="Tema" required />
             </div>
-            <div className="col-md-2 mb-3">
-              <button
-                type="button"
-                onClick={this.handleAddDynamicInputTopic}
-                className="btn btn-primary"
-              >
-                &nbsp;+&nbsp;
+            <div className="col-md-6 mb-3">
+              <label htmlFor="validationDefault02">Assunto</label>
+              <input type="text" className="form-control" id="validationDefault02" placeholder="Assunto" required />
+            </div>
+            <div className="col-md-12 mb-3">
+              <label htmlFor="FormControlResumo">Resumo</label>
+              <textarea className="form-control" id="FormControlResumo" rows="3" placeholder="Sobre o assunto"></textarea>
+            </div>
+          </div>
+          <div className="form-row" style={{
+            backgroundColor: '#f5f5f5', borderRadius: '0.5rem',
+            marginLeft: '0.10rem', marginRight: '0.10rem'
+          }}>
+            <input type="button" className="btn btn-light colorCard"
+              onClick={() => this.setState({
+                colorForm: 'light', colorText: 'black',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })} ></input>
+            <input type="button" className="btn btn-secondary colorCard"
+              onClick={() => this.setState({
+                colorForm: 'secondary', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })}></input>
+            <input type="button" className="btn btn-success colorCard"
+              onClick={() => this.setState({
+                colorForm: 'success', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })}></input>
+            <input type="button" className="btn btn-warning colorCard"
+              onClick={() => this.setState({
+                colorForm: 'warning', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })}></input>
+            <input type="button" className="btn btn-info colorCard"
+              onClick={() => this.setState({
+                colorForm: 'info', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })}></input>
+            <input type="button" className="btn btn-dark colorCard"
+              onClick={() => this.setState({
+                colorForm: 'dark', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'danger'
+              })}></input>
+            <input type="button" className="btn btn-danger colorCard"
+              onClick={() => this.setState({
+                colorForm: 'danger', colorText: 'white',
+                colorSecondary: 'primary', colorTertiary: 'warning'
+              })}></input>
+            <input type="button" className="btn btn-primary colorCard"
+              onClick={() =>
+                this.setState({
+                  colorForm: 'primary', colorText: 'white',
+                  colorSecondary: 'info', colorTertiary: 'danger'
+                })}></input>
+          </div>
+          <br />
+          {this.state.dynamicInputTopic.map((DynamicInputTopic, id) => (
+            <div className="form-row" key={id}>
+              <div className="col-md-10 mb-3">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder={`Topico ${id + 1}`}
+                  value={DynamicInputTopic.name}
+                  onChange={(event) => this.handleDynamicInputTopicNameChange(id, event)}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <button
+                  type="button"
+                  onClick={this.handleAddDynamicInputTopic}
+                  className={`btn btn-${this.state.colorSecondary}`}
+                >
+                  &nbsp;+&nbsp;
              </button>
-              &nbsp;
+                &nbsp;
               <button
-                type="button"
-                onClick={id === 0 ? this.handleRemoveDynamicInputTopic(id + 1) : this.handleRemoveDynamicInputTopic(id)}
-                className="btn btn-danger"
-              >
-                &nbsp;-&nbsp;
+                  type="button"
+                  onClick={id === 0 ? this.handleRemoveDynamicInputTopic(id + 1) : this.handleRemoveDynamicInputTopic(id)}
+                  className={`btn btn-${this.state.colorTertiary}`}
+                >
+                  &nbsp;-&nbsp;
             </button>
+              </div>
             </div>
-          </div>
-        ))}
-        <input className="btn btn-primary" type="submit" value="Submit" />
-      </form>
+          ))}
+          <input className={`btn btn-${this.state.colorSecondary}`} type="submit" value="Submit" />
+          &nbsp;
+          <button className={`btn btn-${this.state.colorTertiary}`}
+            onClick={this.props.showButtonForm}> Cancelar</button>
+
+        </form>
+      </div>
     )
   }
+  //12181191406
 }

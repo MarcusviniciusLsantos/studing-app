@@ -5,11 +5,12 @@ import Form from './Form';
 
 export default class Dashboard extends Component {
   state = {
-    showForm: false
+    showForm: false,
+    formCard: true
   }
 
   showButtonForm = () => {
-    this.setState({ showForm: !this.state.showForm })
+    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard })
   }
 
   renderCard = () => {
@@ -22,27 +23,34 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div className="container">
-
+      <div className="container" >
         {this.state.showForm ?
-
           <div className="row justify-content-center">
             <Form showButtonForm={this.showButtonForm} />
           </div>
-
-
           :
           <>
             <div className="row justify-content-start">
               <Search />
             </div>
-            <br />
             <div className="row justify-content-start">
               {this.renderCard()}
             </div>
           </>
         }
-
+        <input type="button" className={`btn btn-${this.state.formCard ? 'primary' : 'danger'}`}
+          style={{
+            borderRadius: '2rem',
+            display: 'inline-block',
+            height: '4rem',
+            width: '4rem',
+            position: 'fixed',
+            right: '2%',
+            bottom: '2%'
+          }}
+          placeholder="Create Card"
+          value={this.state.formCard ? '+' : 'x'}
+          onClick={this.showButtonForm}></input>
       </div>
     )
   }
