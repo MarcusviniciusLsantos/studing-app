@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Card from './Card';
 import Search from './Search';
 import Form from './Form';
+import './dashboard.css'
 
 export default class Dashboard extends Component {
   state = {
@@ -38,16 +39,9 @@ export default class Dashboard extends Component {
             </div>
           </>
         }
-        <input type="button" className={`btn btn-${this.state.formCard ? 'primary' : 'danger'}`}
-          style={{
-            borderRadius: '2rem',
-            display: 'inline-block',
-            height: '4rem',
-            width: '4rem',
-            position: 'fixed',
-            right: '2%',
-            bottom: '2%'
-          }}
+        <input
+          type="button"
+          className={`btn btn-${this.state.formCard ? 'primary' : 'danger'} button-card`}
           placeholder="Create Card"
           value={this.state.formCard ? '+' : 'x'}
           onClick={this.showButtonForm}></input>

@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css'
+import './form.css'
 
 export default class Form extends React.Component {
 
@@ -45,7 +45,7 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <div className={`card text-${this.state.colorText} bg-${this.state.colorForm} mb-4 mx-3`} style={{ backgroundColor: 'blue', paddingRight: '1rem', paddingLeft: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}>
+      <div className={`card form text-${this.state.colorText} bg-${this.state.colorForm} mb-4 mx-3`}>
         <form onSubmit={this.props.showButtonForm} >
           <div className="form-row">
             <div className="col-md-6 mb-3">
@@ -61,46 +61,43 @@ export default class Form extends React.Component {
               <textarea className="form-control" id="FormControlResumo" rows="3" placeholder="Sobre o assunto"></textarea>
             </div>
           </div>
-          <div className="form-row" style={{
-            backgroundColor: '#f5f5f5', borderRadius: '0.5rem',
-            marginLeft: '0.10rem', marginRight: '0.10rem'
-          }}>
-            <input type="button" className="btn btn-light colorCard"
+          <div className="form-row select-color">
+            <input type="button" className="btn btn-light color-card"
               onClick={() => this.setState({
                 colorForm: 'light', colorText: 'black',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })} ></input>
-            <input type="button" className="btn btn-secondary colorCard"
+            <input type="button" className="btn btn-secondary color-card"
               onClick={() => this.setState({
                 colorForm: 'secondary', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })}></input>
-            <input type="button" className="btn btn-success colorCard"
+            <input type="button" className="btn btn-success color-card"
               onClick={() => this.setState({
                 colorForm: 'success', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })}></input>
-            <input type="button" className="btn btn-warning colorCard"
+            <input type="button" className="btn btn-warning color-card"
               onClick={() => this.setState({
                 colorForm: 'warning', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })}></input>
-            <input type="button" className="btn btn-info colorCard"
+            <input type="button" className="btn btn-info color-card"
               onClick={() => this.setState({
                 colorForm: 'info', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })}></input>
-            <input type="button" className="btn btn-dark colorCard"
+            <input type="button" className="btn btn-dark color-card"
               onClick={() => this.setState({
                 colorForm: 'dark', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'danger'
               })}></input>
-            <input type="button" className="btn btn-danger colorCard"
+            <input type="button" className="btn btn-danger color-card"
               onClick={() => this.setState({
                 colorForm: 'danger', colorText: 'white',
                 colorSecondary: 'primary', colorTertiary: 'warning'
               })}></input>
-            <input type="button" className="btn btn-primary colorCard"
+            <input type="button" className="btn btn-primary color-card"
               onClick={() =>
                 this.setState({
                   colorForm: 'primary', colorText: 'white',
@@ -142,10 +139,8 @@ export default class Form extends React.Component {
           &nbsp;
           <button className={`btn btn-${this.state.colorTertiary}`}
             onClick={this.props.showButtonForm}> Cancelar</button>
-
         </form>
       </div>
     )
   }
-  //12181191406
 }

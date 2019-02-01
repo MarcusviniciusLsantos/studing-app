@@ -1,0 +1,9 @@
+.button-card {
+  border-radius: 2rem;
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+}
