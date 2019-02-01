@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
+
 import Card from './Card';
 import Search from './Search';
 import Form from './Form';
-import './dashboard.css'
+
+import './dashboard.css';
+
+import fire from '../../config/firebase';
 
 export default class Dashboard extends Component {
   state = {
     showForm: false,
-    formCard: true
+    formCard: true,
+    card: []
+  }
+
+  async componentDidMount() {
+    await fire.db.collection("cards").get().then((querySnapshot) => {
+      querySnapshot.forEach(async (doc) => {
+        const card = await this.state.card
+        await card.push(doc.data())
+        await this.setState({ card: card })
+      });
+    });
   }
 
   showButtonForm = () => {
@@ -15,10 +30,17 @@ export default class Dashboard extends Component {
   }
 
   renderCard = () => {
-    var array = [{ id: 0, color: 'primary' }, { id: 0, color: 'secondary' }, { id: 0, color: 'success' }, { id: 0, color: 'danger' }, { id: 0, color: 'warning' }, { id: 0, color: 'info' }, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] || []
-
+    var array = this.state.card || null
     return array.map((item, index) =>
-      <Card cardColor={item.color || 'primary'} showButtonForm={this.showButtonForm} key={index} />
+      <Card
+        cardColor={item.color || 'primary'}
+        showButtonForm={this.showButtonForm}
+        key={index}
+        tema={item.tema}
+        title={item.assunto}
+        >
+        {item.text}
+      </Card>
     )
   }
 
