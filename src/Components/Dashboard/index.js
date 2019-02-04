@@ -16,11 +16,13 @@ export default class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    await fire.db.collection("cards").get().then((querySnapshot) => {
+    await fire.db.collection("cards").where('user_uid', '==', 'vini').get().then((querySnapshot) => {
+      console.log('query is empty?->', querySnapshot.empty)
       querySnapshot.forEach(async (doc) => {
         const card = await this.state.card
         await card.push(doc.data())
         await this.setState({ card: card })
+        await console.log('card ', card)
       });
     });
   }
@@ -33,13 +35,13 @@ export default class Dashboard extends Component {
     var array = this.state.card || null
     return array.map((item, index) =>
       <Card
-        cardColor={item.color || 'primary'}
+        cardColor={item.colorForm || 'primary'}
         showButtonForm={this.showButtonForm}
         key={index}
-        tema={item.tema}
-        title={item.assunto}
-        >
-        {item.text}
+        theme={item.theme}
+        subjectMatter={item.subjectMatter}
+      >
+        {item.summary}
       </Card>
     )
   }

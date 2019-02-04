@@ -9,9 +9,9 @@ export default class Card extends React.Component {
         style={{ maxWidth: '20rem', minWidth: '20rem' }}
         onClick={this.props.showButtonForm}
       >
-        <div className="card-header">{this.props.tema || "Header"}</div>
+        <div className="card-header">{this.props.theme || "Header"}</div>
         <div className="card-body">
-          <h5 className="card-title">{this.props.title || "Primary card title"}</h5>
+          <h5 className="card-title">{this.props.subjectMatter || "Primary card title"}</h5>
           <p className="card-text">{this.props.children || "Some quick example text to build on the card title and make up the bulk of the card's content."}</p>
         </div>
       </a>
