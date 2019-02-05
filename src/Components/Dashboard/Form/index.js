@@ -19,6 +19,36 @@ export default class Form extends React.Component {
     user_uid: "vini"
   };
 
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('GET DERIVED STATE FROM PROPS ->', props, ' state ->', state)
+  //   console.log(' props ->>>>>>>>', props.cardForm)
+  //   Object.entries(props.cardForm).map(item => {
+  //     console.log('items [0]', item[0])
+  //     // if (item[0] === 'topic') {
+  //     //   this.setState({ dynamicInputTopic: [item[1]] })
+  //     // }
+
+
+  //   })
+  // }
+
+  async componentDidMount() {
+    console.log('DID MOUNT')
+    const obj = this.props.cardForm || {}
+
+    await Object.entries(obj).map(item => {
+      item[0] === 'topic' ?
+        item[1].map((input, index) =>
+          this.setState({ dynamicInputTopic: this.state.dynamicInputTopic.splice(index,0, input)})
+        )
+
+        :
+        this.setState({ [item[0]]: [item[1]] })
+    })
+    await console.log('this state', this.state)
+
+  }//falta terminar
+
   handleDynamicInputTopicNameChange = (id, evt) => {
     const newdynamicInputTopic = this.state.dynamicInputTopic.map((objeto, key) => {
       if (id !== key) return objeto;
@@ -164,6 +194,7 @@ export default class Form extends React.Component {
                   value={DynamicInputTopic.topic}
                   onChange={(event) => this.handleDynamicInputTopicNameChange(id, event)}
                 />
+                {console.log('simbora', DynamicInputTopic, id)}
               </div>
               <div className="col-md-2 mb-3">
                 <button

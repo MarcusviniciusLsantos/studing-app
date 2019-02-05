@@ -12,7 +12,8 @@ export default class Dashboard extends Component {
   state = {
     showForm: false,
     formCard: true,
-    card: []
+    card: [],
+    cardForm: {}
   }
 
   async componentDidMount() {
@@ -28,7 +29,12 @@ export default class Dashboard extends Component {
   }
 
   showButtonForm = () => {
-    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard })
+    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard, cardForm: {}})
+  }
+
+  renderCardfromForm = (item) => {
+    console.log('item', item)
+    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard, cardForm: item })
   }
 
   renderCard = () => {
@@ -36,7 +42,7 @@ export default class Dashboard extends Component {
     return array.map((item, index) =>
       <Card
         cardColor={item.colorForm || 'primary'}
-        showButtonForm={this.showButtonForm}
+        showButtonForm={() => this.renderCardfromForm(item)}
         key={index}
         theme={item.theme}
         subjectMatter={item.subjectMatter}
@@ -51,7 +57,8 @@ export default class Dashboard extends Component {
       <div className="container" >
         {this.state.showForm ?
           <div className="row justify-content-center">
-            <Form showButtonForm={this.showButtonForm} />
+            <Form showButtonForm={this.showButtonForm}
+                  cardForm={this.state.cardForm} />
           </div>
           :
           <>
