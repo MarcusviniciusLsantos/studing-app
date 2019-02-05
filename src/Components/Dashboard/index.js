@@ -13,28 +13,49 @@ export default class Dashboard extends Component {
     showForm: false,
     formCard: true,
     card: [],
-    cardForm: {}
+    cardForm: {},
+    buttonUpdate: false
   }
 
   async componentDidMount() {
+    await fire.db.collection("cards").where('user_uid', '==', 'vini')
+      .onSnapshot((querySnapshot) => {
+        var card = [];
+        console.log('query is empty?->', querySnapshot.empty)
+        querySnapshot.forEach(async (doc) => {
+          const card = await this.state.card
+          await card.push(doc.data())
+          await this.setState({ card: card })
+          await console.log('card ', card)
+        });
+        console.log("test", card);
+      });
+
     await fire.db.collection("cards").where('user_uid', '==', 'vini').get().then((querySnapshot) => {
-      console.log('query is empty?->', querySnapshot.empty)
+
       querySnapshot.forEach(async (doc) => {
-        const card = await this.state.card
-        await card.push(doc.data())
-        await this.setState({ card: card })
-        await console.log('card ', card)
+
       });
     });
   }
 
   showButtonForm = () => {
-    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard, cardForm: {}})
+    this.setState({
+      showForm: !this.state.showForm,
+      formCard: !this.state.formCard,
+      cardForm: {},
+      buttonUpdate: false
+    })
   }
 
   renderCardfromForm = (item) => {
     console.log('item', item)
-    this.setState({ showForm: !this.state.showForm, formCard: !this.state.formCard, cardForm: item })
+    this.setState({
+      showForm: !this.state.showForm,
+      formCard: !this.state.formCard,
+      cardForm: item,
+      buttonUpdate: true
+    })
   }
 
   renderCard = () => {
@@ -57,8 +78,11 @@ export default class Dashboard extends Component {
       <div className="container" >
         {this.state.showForm ?
           <div className="row justify-content-center">
-            <Form showButtonForm={this.showButtonForm}
-                  cardForm={this.state.cardForm} />
+            <Form
+              showButtonForm={this.showButtonForm}
+              cardForm={this.state.cardForm}
+              buttonUpdate={}
+              />
           </div>
           :
           <>

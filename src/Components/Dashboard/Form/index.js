@@ -37,13 +37,17 @@ export default class Form extends React.Component {
     const obj = this.props.cardForm || {}
 
     await Object.entries(obj).map(item => {
-      item[0] === 'topic' ?
-        item[1].map((input, index) =>
-          this.setState({ dynamicInputTopic: this.state.dynamicInputTopic.splice(index,0, input)})
-        )
-
-        :
+      if (item[0] === 'topic') {
+        const array = []
+        item[1].map((input, index) => {
+          array.push(input)
+        })
+        console.log('array ->', array)
+        this.setState({ dynamicInputTopic: array })
+      } else {
         this.setState({ [item[0]]: [item[1]] })
+      }
+
     })
     await console.log('this state', this.state)
 
