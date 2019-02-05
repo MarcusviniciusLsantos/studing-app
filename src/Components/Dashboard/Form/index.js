@@ -139,7 +139,7 @@ export default class Form extends React.Component {
       user_name,
       user_uid
     } = this.state
-
+    
     event.preventDefault();
     const topic = dynamicInputTopic
 
@@ -155,12 +155,28 @@ export default class Form extends React.Component {
       colorSecondary,
       colorTertiary
     }
-
     fire.db.collection("cards").add(card).then((res) => {
       console.log('inserting data card', res)
     }).catch((err) => {
       console.log('error inserting data card', err)
     })
+  }
+
+  handleUpdate = () => {
+    const {
+      theme,
+      subjectMatter,
+      summary,
+      dynamicInputTopic,
+      colorForm,
+      colorText,
+      colorSecondary,
+      colorTertiary,
+      user_name,
+      user_uid
+    } = this.state
+
+
   }
 
   render() {
@@ -219,7 +235,12 @@ export default class Form extends React.Component {
               </div>
             </div>
           ))}
-          <input className={`btn btn-${this.state.colorSecondary}`} type="submit" value="Submit" />
+          {!this.props.buttonUpdate ?
+            <input className={`btn btn-${this.state.colorSecondary}`} type="submit" value="Submit" />
+            :
+            <input className={`btn btn-${this.state.colorSecondary}`} type="button" value="Update"
+              onClick={this.handleUpdate} />
+          }
           &nbsp;
           <button className={`btn btn-${this.state.colorTertiary}`}
             onClick={this.props.showButtonForm}> Cancel </button>

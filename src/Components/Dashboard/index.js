@@ -81,7 +81,7 @@ export default class Dashboard extends Component {
             <Form
               showButtonForm={this.showButtonForm}
               cardForm={this.state.cardForm}
-              buttonUpdate={}
+              buttonUpdate={this.state.buttonUpdate}
               />
           </div>
           :
