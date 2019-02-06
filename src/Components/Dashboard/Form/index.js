@@ -16,7 +16,8 @@ export default class Form extends React.Component {
     summary: "",
     arrayColor: ['light', 'secondary', 'success', 'warning', 'info', 'dark', 'danger', 'primary'],
     user_name: "vini",
-    user_uid: "vini"
+    user_uid: "vini",
+    id: ''
   };
 
   // static getDerivedStateFromProps(props, state) {
@@ -45,7 +46,7 @@ export default class Form extends React.Component {
         console.log('array ->', array)
         this.setState({ dynamicInputTopic: array })
       } else {
-        this.setState({ [item[0]]: [item[1]] })
+        this.setState({ [item[0]]: item[1] })
       }
 
     })
@@ -139,7 +140,7 @@ export default class Form extends React.Component {
       user_name,
       user_uid
     } = this.state
-    
+
     event.preventDefault();
     const topic = dynamicInputTopic
 
@@ -173,9 +174,29 @@ export default class Form extends React.Component {
       colorSecondary,
       colorTertiary,
       user_name,
-      user_uid
+      user_uid,
+      id
     } = this.state
 
+    const topic = dynamicInputTopic
+
+    const newCard = {
+      user_name,
+      user_uid,
+      theme,
+      subjectMatter,
+      summary,
+      topic,
+      colorForm,
+      colorText,
+      colorSecondary,
+      colorTertiary
+    }
+
+    fire.db.collection("cards").doc(id).update(newCard)
+      .then(() => {
+        console.log("Document successfully updated!");
+      }).catch((err) => console.log('error updated', err))
 
   }
 

@@ -24,7 +24,6 @@ export default class Dashboard extends Component {
         console.log('query is empty?->', querySnapshot.empty)
         querySnapshot.forEach(async (doc) => {
           console.log("doc ->", doc)
-          const card = await this.state.card
           const id = await doc.id
           const obj = await doc.data()
           obj.id = await id
