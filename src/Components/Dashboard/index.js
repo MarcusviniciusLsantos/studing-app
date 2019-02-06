@@ -23,20 +23,17 @@ export default class Dashboard extends Component {
         var card = [];
         console.log('query is empty?->', querySnapshot.empty)
         querySnapshot.forEach(async (doc) => {
+          console.log("doc ->", doc)
           const card = await this.state.card
-          await card.push(doc.data())
+          const id = await doc.id
+          const obj = await doc.data()
+          obj.id = await id
+          await card.push(obj)
           await this.setState({ card: card })
           await console.log('card ', card)
         });
         console.log("test", card);
       });
-
-    await fire.db.collection("cards").where('user_uid', '==', 'vini').get().then((querySnapshot) => {
-
-      querySnapshot.forEach(async (doc) => {
-
-      });
-    });
   }
 
   showButtonForm = () => {
@@ -82,7 +79,7 @@ export default class Dashboard extends Component {
               showButtonForm={this.showButtonForm}
               cardForm={this.state.cardForm}
               buttonUpdate={this.state.buttonUpdate}
-              />
+            />
           </div>
           :
           <>
